@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio{
     @Override
-    public Usuario obtenerPlan(Long idUsuario) {
+    public Usuario obtenerUnPlan(Long idUsuario) {
         return null;
     }
 

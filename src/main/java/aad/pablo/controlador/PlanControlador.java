@@ -6,13 +6,10 @@ import aad.pablo.servicio.PlanServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-@RestController
+@RestController()
 @RequestMapping("/plan")
 public class PlanControlador {
 
@@ -32,7 +29,7 @@ public class PlanControlador {
                 .body(toJson(planServicio.obtenerPlan(idPlan)));
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String>crearPlan(@RequestParam Plan plan){
+    public ResponseEntity<String>crearPlan(@RequestBody Plan plan){
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type","application/json")
                 .body(toJson(planServicio.crearPlan(plan)));
@@ -49,6 +46,20 @@ public class PlanControlador {
                 .header("Content-Type","application/json")
                 .body(planServicio.borrarPlan(idPlan));
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/unirse")
+    public ResponseEntity<String>unirsePlan(@RequestParam Long  idPlan, Long idUsuario){
+        return ResponseEntity.status(HttpStatus.OK)
+                .header("Content-Type","application/json")
+                .body(toJson(planServicio.unirsePlan(idPlan, idUsuario)));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/borrarse")
+    public ResponseEntity<String>borrarsePlan(@RequestParam Long  idPlan, Long idUsuario){
+        return ResponseEntity.status(HttpStatus.OK)
+                .header("Content-Type","application/json")
+                .body(toJson(planServicio.borrarsePlan(idPlan, idUsuario)));
+    }
+
 
 
 

@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 
     public String toJson(Object object)
@@ -27,16 +26,23 @@ public class UsuarioControlador {
     UsuarioServicio usuarioServicio;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<String> obtenerPlan(@RequestParam Long idPlan){
+    public ResponseEntity<String> obtenerUnPlan(@RequestParam Long idPlan){
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type","application/json")
-                .body(toJson(usuarioServicio.obtenerPlan(idPlan)));
+                .body(toJson(usuarioServicio.obtenerUnPlan(idPlan)));
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String>crearUsuario(@RequestParam Usuario usuario){
+    public ResponseEntity<String>crearUsuario(@RequestBody Usuario usuario){
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type","application/json")
                 .body(toJson(usuarioServicio.crearUsuario(usuario)));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<Boolean>borrarUsuario(@RequestParam Long idUsuario){
+        return ResponseEntity.status(HttpStatus.OK)
+                .header("Content-Type","application/json")
+                .body(usuarioServicio.borrarUsuario(idUsuario));
     }
 }

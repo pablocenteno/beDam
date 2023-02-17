@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public interface UsuarioServicio {
 
 
-    public Usuario obtenerPlan(Long idUsuario);
+    public Usuario obtenerUnPlan(Long idUsuario);
     public Usuario crearUsuario(Usuario usuario);
     public boolean borrarUsuario(Long idUsuario);
 }
