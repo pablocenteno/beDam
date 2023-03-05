@@ -47,7 +47,7 @@ public class PlanServicioImpl implements PlanServicio{
 
         plan.getParticipantes().add(usuario);
         usuario.getPlanes().add(plan);
-        return plan;
+        return planRepository.save(plan);
 
     }
 
@@ -58,6 +58,6 @@ public class PlanServicioImpl implements PlanServicio{
 
         plan.getParticipantes().remove(usuario);
        usuario.getPlanes().remove(plan);
-        return plan;
+        return planRepository.save(plan);
     }
 }
