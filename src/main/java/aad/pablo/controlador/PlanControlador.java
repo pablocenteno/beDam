@@ -35,7 +35,7 @@ public class PlanControlador {
                 .body(toJson(planServicio.crearPlan(plan)));
     }
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<String>modificarPlan(@RequestParam Plan plan){
+    public ResponseEntity<String>modificarPlan(@RequestBody Plan plan){
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type","application/json")
                 .body(toJson(planServicio.modificarPlan(plan)));
@@ -47,7 +47,8 @@ public class PlanControlador {
                 .body(planServicio.borrarPlan(idPlan));
     }
     @RequestMapping(method = RequestMethod.GET, value = "/unirse")
-    public ResponseEntity<String>unirsePlan(@RequestParam Long  idPlan, Long idUsuario){
+    public ResponseEntity<String>unirsePlan(@RequestParam(value = "idPlan", defaultValue = "0") Long idPlan,
+                                            @RequestParam(value = "idUsuario", defaultValue = "0") Long idUsuario){
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Content-Type","application/json")
                 .body(toJson(planServicio.unirsePlan(idPlan, idUsuario)));

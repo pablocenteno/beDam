@@ -41,12 +41,13 @@ public class PlanServicioImpl implements PlanServicio{
     }
 
     @Override
-    public Plan unirsePlan(Long idUsuario, Long idPlan) {
+    public Plan unirsePlan(Long idPlan, Long idUsuario) {
         Plan plan = planRepository.findById(idPlan).get();
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
 
-        plan.getParticipantes().add(usuario);
         usuario.getPlanes().add(plan);
+        plan.getParticipantes().add(usuario);
+
         return planRepository.save(plan);
 
     }

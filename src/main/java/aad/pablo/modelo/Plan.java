@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,5 +22,5 @@ public class Plan {
     Date fecha;
 
     @DBRef
-    List<Usuario> participantes;
+    List<Usuario> participantes = new ArrayList<>();
 }

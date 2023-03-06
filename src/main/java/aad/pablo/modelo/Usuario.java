@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,5 +23,5 @@ public class Usuario {
     @Expose
     Date fechaNac;
     @DBRef
-    List<Plan> planes;
+    List<Plan> planes = new ArrayList<>();
 }
