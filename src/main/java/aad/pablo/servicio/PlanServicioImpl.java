@@ -56,7 +56,6 @@ public class PlanServicioImpl implements PlanServicio{
     public Plan borrarsePlan(Long idUsuario, Long idPlan) {
         Plan plan = planRepository.findById(idPlan).get();
         Usuario usuario = usuarioRepository.findById(idUsuario).get();
-
         plan.getParticipantes().remove(usuario);
        usuario.getPlanes().remove(plan);
         return planRepository.save(plan);
